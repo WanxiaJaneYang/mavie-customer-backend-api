@@ -21,15 +21,15 @@ npm install -g swagger-cli
 ```
 Then, run the following command in the root directory of this repository to bundle the API specifications:
 ```bash
-swagger-cli bundle -o bundled-api-spec.yml api-spec.yml
+swagger-cli bundle -o mavie.yml api-spec.yml
 ```
-This command will generate a bundled file named bundled-api-spec.yml.
+This command will generate a bundled file named mavie.yml.
 
 ### Viewing the API Specification
 
 #### Using an Online Editor
 
-You can view and interact with the API specification using the Swagger Editor online. Simply go to [Swagger Editor](https://editor.swagger.io), and import the bundled API specification file (`bundled-api-spec.yml`).
+You can view and interact with the API specification using the Swagger Editor online. Simply go to [Swagger Editor](https://editor.swagger.io), and import the bundled API specification file (`mavie.yml`).
 
 #### Running Swagger UI Locally with Docker
 
