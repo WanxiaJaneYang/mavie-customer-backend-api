@@ -4,17 +4,17 @@ properties:
     type: array
     description: The list of domains for the product
     items:
-      $ref: '#/components/schemas/Domain'
+      $ref: './Domain.yml'
   features:
     type: array
     description: The list of features for the product
     items:
-      $ref: '#/components/schemas/Feature'
+      $ref: './Feature.yml'
   personas:
     type: array
     description: The list of personas for the product
     items:
-      $ref: '#/components/schemas/Persona'
+      $ref: './Persona.yml'
   ageRange:
     type: object
     description: The age range for the product

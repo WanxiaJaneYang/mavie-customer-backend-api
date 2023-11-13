@@ -1,4 +1,4 @@
-Get:
+get:
   summary: Get a specific product's filter info
   description: This endpoint allows the front end to get information about the filter of a specific product
   parameters:
@@ -8,21 +8,18 @@ Get:
       description: The id of the product
       schema:
         type: integer
-  headers:
-    Authorization:
-      description: The JWT token to be used for authentication
-      schema:
-        type: string
+  security:
+    - bearerAuth: []
   responses:
     '200':
       description: OK
       content:
         application/json:
           schema:
-            $ref: '#../components/schemas/ProductFilterResponse'
+            $ref: '../components/schemas/ProductFilterResponse.yml'
     '400':
-      $ref: '#../components/responses/BadRequest'
+      $ref: '../components/responses/BadRequest.yml'
     '401':
-      $ref: '#../components/responses/Unauthorized'
+      $ref: '../components/responses/Unauthorized.yml'
     '500':
-      $ref: '#../components/responses/InternalServerError'
+      $ref: '../components/responses/InternalServerError.yml'

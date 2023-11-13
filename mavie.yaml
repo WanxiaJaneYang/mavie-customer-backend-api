@@ -1,0 +1,291 @@
+openapi: 3.0.0
+paths:
+  /login:
+    post:
+      summary: Customer Login
+      description: 'This endpoint allows a customer to login to the system, it returns a JWT token that can be used to authenticate future requests and a refresh token that can be used to refresh the JWT token and the list of product purchased by this customer'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The email address of the customer
+                password:
+                  type: string
+                  description: The password of the customer
+                remember_me:
+                  type: boolean
+                  description: 'If true, the JWT token will be valid for 30 days, otherwise it will be valid for 1 hour'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: 'The JWT token to be used for authentication, this is valid for 10 minutes'
+                  refresh_token:
+                    type: string
+                    description: 'The JWT refresh token to be used to refresh the access token, this is valid for 1 hour or 30 days depending on the value of remember_me'
+                  products:
+                    type: array
+                    description: The list of products purchased by the customer
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The id of the product
+                        name:
+                          type: string
+                          description: The name of the product
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: The error message
+  /refresh_token:
+    post:
+      summary: Get a new JWT token by using the refresh token
+      description: This endpoint allows the front end to get a new JWT access token by using the refresh token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+                  description: The refresh token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: 'The JWT token to be used for authentication, valid for 10 minutes.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/product_filter/{id}':
+    get:
+      summary: Get a specific product's filter info
+      description: This endpoint allows the front end to get information about the filter of a specific product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the product
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductFilterResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+info:
+  title: Mavie API
+  description: API for Mavie Customer Backend
+  version: 1.0.0
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ProductFilterResponse:
+      type: object
+      properties:
+        domains:
+          type: array
+          description: The list of domains for the product
+          items:
+            $ref: '#/components/schemas/Domain'
+        features:
+          type: array
+          description: The list of features for the product
+          items:
+            $ref: '#/components/schemas/Feature'
+        personas:
+          type: array
+          description: The list of personas for the product
+          items:
+            $ref: '#/components/schemas/Persona'
+        ageRange:
+          type: object
+          description: The age range for the product
+          properties:
+            minAge:
+              type: integer
+              description: The minimum age for the product
+            maxAge:
+              type: integer
+              description: The maximum age for the product
+    Domain:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the domain
+        name:
+          type: string
+          description: The name of the domain
+        importance:
+          type: number
+          description: The importance of the domain
+        icon:
+          type: string
+          description: The icon svg of the domain
+        roundIcon:
+          type: string
+          description: The round icon svg of the domain
+        featureIds:
+          type: array
+          description: The list of feature ids for the domain
+          items:
+            type: integer
+            description: The id of the feature
+        description:
+          type: string
+          description: The description of the domain
+    Feature:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the feature
+        name:
+          type: string
+          description: The name of the feature
+        importance:
+          type: number
+          description: The importance of the feature
+        icon:
+          type: string
+          description: 'The icon svg of the feature, purple background'
+        description:
+          type: string
+          description: The description of the feature
+    Persona:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the persona
+        name:
+          type: string
+          description: The name of the persona
+        icon:
+          type: string
+          description: The icon svg of the persona
+        roundButtonSelected:
+          type: string
+          description: The round button selected svg of the persona
+        roundButtonUnselected:
+          type: string
+          description: The round button unselected svg of the persona
+        description:
+          type: string
+          description: The description of the persona
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message

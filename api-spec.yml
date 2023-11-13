@@ -11,21 +11,26 @@ info:
   description: API for Mavie Customer Backend
   version: 1.0.0
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     ProductFilterResponse:
-      $ref: '#/components/schemas/ProductFilterResponse'
+      $ref: 'components/schemas/ProductFilterResponse.yml'
     Domain:
-      $ref: '#/components/schemas/Domain'
+      $ref: 'components/schemas/Domain.yml'
     Feature:
-      $ref: '#/components/schemas/Feature'
+      $ref: 'components/schemas/Feature.yml'
     Persona:
-      $ref: '#/components/schemas/Persona'
+      $ref: 'components/schemas/Persona.yml'
   responses:
     BadRequest:
-      $ref: '#/components/responses/BadRequest'
+      $ref: 'components/responses/BadRequest.yml'
     InternalServerError:
-      $ref: '#/components/responses/InternalServerError'
+      $ref: 'components/responses/InternalServerError.yml'
     Unauthorized:
-      $ref: '#/components/responses/Unauthorized'
+      $ref: 'components/responses/Unauthorized.yml'
     NotFound:
-      $ref: '#/components/responses/NotFound'
+      $ref: 'components/responses/NotFound.yml'
