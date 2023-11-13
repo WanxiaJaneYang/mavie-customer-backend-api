@@ -4,8 +4,14 @@ paths:
     $ref: 'paths/login.yml'
   /refresh_token:
     $ref: 'paths/refreshToken.yml'
-  /product_filter/{id}:
+  /product/{productId}:
+    $ref: 'paths/productInfo.yml'
+  /product/{productId}/filter:
     $ref: 'paths/productFilter.yml'
+  /product/{productId}/rating:
+    $ref: 'paths/productRating.yml'
+  /product/{productId}/feature/{featureId}:
+    $ref: 'paths/featureDetail.yml'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend

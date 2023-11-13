@@ -1,0 +1,44 @@
+get:
+  summary: Get a specific product's feature rating info
+  description: This endpoint allows the front end to get information about the detail feature rating of a specific product
+  security:
+    - BearerAuth: []
+  parameters:
+    - name: productId
+      in: path
+      required: true
+      description: The id of the product
+      schema:
+        type: integer
+    - name: featureId
+      in: path
+      required: true
+      description: The id of the feature
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            description: The questions rating of the feature
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: The id of the question
+                score:
+                  type: number
+                  description: The score of the question
+                importance:
+                  type: number
+                  description: The importance of the question
+    '400':
+      $ref: '../components/responses/BadRequest.yml'
+    '401':
+      $ref: '../components/responses/Unauthorized.yml'
+    '500':
+      $ref: '../components/responses/InternalServerError.yml'

@@ -1,6 +1,6 @@
 get:
-  summary: Get a specific product's filter info
-  description: This endpoint allows the front end to get information about the filter of a specific product
+  summary: Get a specific product's info
+  description: This endpoint allows the front end to get information about a specific product
   parameters:
     - name: productId
       in: path
@@ -16,7 +16,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ProductFilterResponse.yml'
+            $ref: '../components/schemas/ProductInfoResponse.yml'
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':

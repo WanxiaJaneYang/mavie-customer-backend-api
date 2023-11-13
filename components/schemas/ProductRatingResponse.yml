@@ -1,0 +1,32 @@
+type: object
+properties:
+  overallRating:
+    type: number
+    description: The overall rating of the product
+    example: 4.5
+  domainRatings:
+    type: array
+    description: The domain ratings of the product
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the domain
+        rating:
+          type: number
+          description: The rating of the domain
+          example: 4.5
+  featureRatings:
+    type: array
+    description: The feature ratings of the product, only include this if the request params featuresOn is true
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the feature
+        rating:
+          type: number
+          description: The rating of the feature
+          example: 4.5
