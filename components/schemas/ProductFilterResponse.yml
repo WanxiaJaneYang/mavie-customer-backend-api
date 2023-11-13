@@ -1,30 +1,28 @@
-components:
-  schema:
-    ProductFilterResponse:
+ProductFilterResponse:
+  type: object
+  properties:
+    domains:
+      type: array
+      description: The list of domains for the product
+      items:
+        $ref: '#/components/schemas/Domain'
+    features:
+      type: array
+      description: The list of features for the product
+      items:
+        $ref: '#/components/schemas/Feature'
+    personas:
+      type: array
+      description: The list of personas for the product
+      items:
+        $ref: '#/components/schemas/Persona'
+    ageRange:
       type: object
+      description: The age range for the product
       properties:
-        domains:
-          type: array
-          description: The list of domains for the product
-          items:
-            $ref: 'components/schemas/Domain'
-        features:
-          type: array
-          description: The list of features for the product
-          items:
-            $ref: 'components/schemas/Feature'
-        personas:
-          type: array
-          description: The list of personas for the product
-          items:
-            $ref: 'components/schemas/Persona'
-        ageRange:
-          type: object
-          description: The age range for the product
-          properties:
-            minAge:
-              type: integer
-              description: The minimum age for the product
-            maxAge:
-              type: integer
-              description: The maximum age for the product
+        minAge:
+          type: integer
+          description: The minimum age for the product
+        maxAge:
+          type: integer
+          description: The maximum age for the product
