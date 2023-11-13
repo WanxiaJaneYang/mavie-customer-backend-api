@@ -1,0 +1,22 @@
+components:
+  Persona:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: The id of the persona
+      name:
+        type: string
+        description: The name of the persona
+      icon:
+        type: string
+        description: The icon svg of the persona
+      roundButtonSelected:
+        type: string
+        description: The round button selected svg of the persona
+      roundButtonUnselected:
+        type: string
+        description: The round button unselected svg of the persona
+      description:
+        type: string
+        description: The description of the persona

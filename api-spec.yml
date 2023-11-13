@@ -1,0 +1,10 @@
+openapi: 3.0.0
+paths:
+  /login:
+    $ref: 'paths/login.yml'
+  /refresh_token:
+    $ref: 'paths/refresh_token.yml'
+info:
+  title: Mavie API
+  description: API for Mavie Customer Backend
+  version: 1.0.0

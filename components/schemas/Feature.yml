@@ -1,0 +1,21 @@
+components:
+  schema:
+    Feature:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the feature
+        name:
+          type: string
+          description: The name of the feature
+        importance:
+          type: float
+          description: The importance of the feature
+        icon:
+          type: string
+          description: The icon svg of the feature, purple background
+        description:
+          type: string
+          description: The description of the feature
+
