@@ -1,10 +1,9 @@
-InternalServerError:
-  description: Internal Server Error
-  content:
-    application/json:
-      schema:
-        type: object
-        properties:
-          error:
-            type: string
-            description: The error message
+description: Internal Server Error
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error message

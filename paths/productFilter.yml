@@ -1,29 +1,28 @@
-/product_filter/{id}:
-  Get:
-    summary: Get a specific product's filter info
-    description: This endpoint allows the front end to get information about the filter of a specific product
-    parameters:
-      - name: id
-        in: path
-        required: true
-        description: The id of the product
-        schema:
-          type: integer
-    headers:
-      Authorization:
-        description: The JWT token to be used for authentication
-        schema:
-          type: string
-    responses:
-      '200':
-        description: OK
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProductFilterResponse'
-      '400':
-        $ref: '#/components/responses/BadRequest'
-      '401':
-        $ref: '#/components/responses/Unauthorized'
-      '500':
-        $ref: '#/components/responses/InternalServerError'
+Get:
+  summary: Get a specific product's filter info
+  description: This endpoint allows the front end to get information about the filter of a specific product
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: The id of the product
+      schema:
+        type: integer
+  headers:
+    Authorization:
+      description: The JWT token to be used for authentication
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#../components/schemas/ProductFilterResponse'
+    '400':
+      $ref: '#../components/responses/BadRequest'
+    '401':
+      $ref: '#../components/responses/Unauthorized'
+    '500':
+      $ref: '#../components/responses/InternalServerError'

@@ -1,12 +1,13 @@
-/login:
-  post:
-    summary: Customer Login
-    description: This endpoint allows a customer to login to the system, it returns a JWT token that can be used to authenticate future requests and a refresh token that can be used to refresh the JWT token and the list of product purchased by this customer
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
+post:
+  summary: Customer Login
+  description: This endpoint allows a customer to login to the system, it returns a JWT token that can be used to authenticate future requests and a refresh token that can be used to refresh the JWT token and the list of product purchased by this customer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
             email:
               type: string
               description: The email address of the customer
@@ -16,69 +17,69 @@
             remember_me:
               type: boolean
               description: If true, the JWT token will be valid for 30 days, otherwise it will be valid for 1 hour
-    responses:
-      '200':
-        description: OK
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                access_token:
-                  type: string
-                  description: The JWT token to be used for authentication, this is valid for 10 minutes
-                refresh_token:
-                  type: string
-                  description: The JWT refresh token to be used to refresh the access token, this is valid for 1 hour or 30 days depending on the value of remember_me
-                products:
-                  type: array
-                  description: The list of products purchased by the customer
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        description: The id of the product
-                      name:
-                        type: string
-                        description: The name of the product
-      '400':
-        description: Bad Request
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                error:
-                  type: string
-                  description: The error message
-      '401':
-        description: Unauthorized
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                error:
-                  type: string
-                  description: The error message
-      '404':
-        description: Not Found
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                error:
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              access_token:
+                type: string
+                description: The JWT token to be used for authentication, this is valid for 10 minutes
+              refresh_token:
+                type: string
+                description: The JWT refresh token to be used to refresh the access token, this is valid for 1 hour or 30 days depending on the value of remember_me
+              products:
+                type: array
+                description: The list of products purchased by the customer
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The id of the product
+                    name:
+                      type: string
+                      description: The name of the product
+    '400':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message
+    '401':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
                   type: string
                   description: The error message
-      '500':
-        description: Internal Server Error
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                error:
-                  type: string
-                  description: The error message
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                description: The error message

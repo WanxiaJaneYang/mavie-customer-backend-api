@@ -1,10 +1,9 @@
-Unauthorized:
-  description: Unauthorized
-  content:
-    application/json:
-      schema:
-        type: object
-        properties:
-          error:
-            type: string
-            description: The error message
+description: Unauthorized
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error message

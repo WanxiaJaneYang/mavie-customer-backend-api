@@ -13,19 +13,19 @@ info:
 components:
   schemas:
     ProductFilterResponse:
-      $ref: 'components/schemas/ProductFilterResponse.yml'
+      $ref: '#/components/schemas/ProductFilterResponse'
     Domain:
-      $ref: 'components/schemas/Domain.yml'
+      $ref: '#/components/schemas/Domain'
     Feature:
-      $ref: 'components/schemas/Feature.yml'
+      $ref: '#/components/schemas/Feature'
     Persona:
-      $ref: 'components/schemas/Persona.yml'
+      $ref: '#/components/schemas/Persona'
   responses:
     BadRequest:
-      $ref: 'components/responses/BadRequest.yml'
+      $ref: '#/components/responses/BadRequest'
     InternalServerError:
-      $ref: 'components/responses/InternalServerError.yml'
+      $ref: '#/components/responses/InternalServerError'
     Unauthorized:
-      $ref: 'components/responses/Unauthorized.yml'
+      $ref: '#/components/responses/Unauthorized'
     NotFound:
-      $ref: 'components/responses/NotFound.yml'
+      $ref: '#/components/responses/NotFound'

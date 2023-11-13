@@ -1,27 +1,26 @@
-Domain:
-  type: object
-  properties:
-    id:
-      type: integer
-      description: The id of the domain
-    name:
-      type: string
-      description: The name of the domain
-    importance:
-      type: float
-      description: The importance of the domain
-    icon:
-      type: string
-      description: The icon svg of the domain
-    roundIcon:
-      type: string
-      description: The round icon svg of the domain
-    featureIds:
-      type: array
-      description: The list of feature ids for the domain
-    items:
-      type: integer
-      description: The id of the feature
-    description:
-      type: string
-      description: The description of the domain
+type: object
+properties:
+  id:
+    type: integer
+    description: The id of the domain
+  name:
+    type: string
+    description: The name of the domain
+  importance:
+    type: float
+    description: The importance of the domain
+  icon:
+    type: string
+    description: The icon svg of the domain
+  roundIcon:
+    type: string
+    description: The round icon svg of the domain
+  featureIds:
+    type: array
+    description: The list of feature ids for the domain
+  items:
+    type: integer
+    description: The id of the feature
+  description:
+    type: string
+    description: The description of the domain
