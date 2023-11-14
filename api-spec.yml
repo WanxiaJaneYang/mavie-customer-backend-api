@@ -2,6 +2,8 @@ openapi: 3.0.0
 paths:
   /login:
     $ref: 'paths/login.yml'
+  /signup:
+    $ref: 'paths/signup.yml'
   /refresh_token:
     $ref: 'paths/refreshToken.yml'
   /product/{productId}:
@@ -12,6 +14,10 @@ paths:
     $ref: 'paths/productRating.yml'
   /product/{productId}/feature/{featureId}:
     $ref: 'paths/featureDetail.yml'
+  /product/{productId}/share:
+    $ref: 'paths/share.yml'
+  /client/{clientId}/addAccess/{productId}:
+    $ref: 'paths/addAccess.yml'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend
