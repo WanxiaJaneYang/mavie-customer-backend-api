@@ -35,12 +35,11 @@ get:
                   type: object
                   properties:
                     id:
-                    type: integer
-                    description: The id of the question
-              
-                  importance:
-                    type: number
-                    description: The importance of the question
+                      type: integer
+                      description: The id of the question
+                    importance:
+                      type: number
+                      description: The importance of the question
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':
