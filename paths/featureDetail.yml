@@ -22,20 +22,25 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            description: The questions rating of the feature
-            items:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  description: The id of the question
-                score:
-                  type: number
-                  description: The score of the question
-                importance:
-                  type: number
-                  description: The importance of the question
+            type: object
+            description: The response body
+            properties:
+              access_token:
+                type: string
+                description: The new JWT token to be used for authentication, this is valid for 10 minutes
+              features:
+                type: array
+                description: The questions rating of the feature
+                items:
+                  type: object
+                  properties:
+                    id:
+                    type: integer
+                    description: The id of the question
+              
+                  importance:
+                    type: number
+                    description: The importance of the question
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':
