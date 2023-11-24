@@ -30,9 +30,6 @@ get:
             type: object
             description: The response body
             properties:
-              access_token:
-                type: string
-                description: The new JWT token to be used for authentication, this is valid for 10 minutes
               features:
                 type: array
                 description: The questions rating of the feature
@@ -44,7 +41,7 @@ get:
                       description: The id of the question
                     importance:
                       type: number
-                      description: The importance of the question
+                      description: The importance of the question, from 0 to 1. all the importance should add up to 1
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':
