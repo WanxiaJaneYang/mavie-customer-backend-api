@@ -21,7 +21,7 @@ npm install -g swagger-cli
 ```
 Then, run the following command in the root directory of this repository to bundle the API specifications:
 ```bash
-swagger-cli bundle -o mavie.yml api-spec.yml
+swagger-cli bundle -o mavie.yml api-spec.yml -t yaml
 ```
 This command will generate a bundled file named mavie.yml.
 
