@@ -1,27 +1,23 @@
-post:
+get:
   summary: Get a new JWT token by using the refresh token
-  description: This endpoint allows the front end to get a new JWT access token by using the refresh token.
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            refresh_token:
-              type: string
-              description: The refresh token
+  description: The refresh token is stored in the http-only cookie, so the front end should not send any authorization header to the backend. This endpoint allows the front end to get a new JWT access token by using the refresh token.
   responses:
     '200':
       description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+          schema:
+            $ref: '../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
           schema:
             type: object
             properties:
-              access_token:
+              message:
                 type: string
-                description: The JWT token to be used for authentication, valid for 10 minutes.
+                description: The message indicating the success of the operation
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':

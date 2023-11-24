@@ -1,0 +1,4 @@
+type: string
+example: |
+  "access_token:jwt token here; Secure, HttpOnly"
+  "refresh_token:jwt token here; Secure, HttpOnly"

@@ -1,6 +1,6 @@
 post:
   summary: Customer Login
-  description: This endpoint allows a customer to login to the system, it returns a JWT token that can be used to authenticate future requests and a refresh token that can be used to refresh the JWT token and the list of product purchased by this customer
+  description: This endpoint allows a customer to login to the system, set a jwt token in the cookie and return the list of products purchased by the customer
   requestBody:
     required: true
     content:
@@ -16,21 +16,23 @@ post:
               description: The password of the customer
             remember_me:
               type: boolean
-              description: If true, the JWT token will be valid for 30 days, otherwise it will be valid for 1 hour
+              description: If true, set both the refresh token and access token in the cookie, if false, only set the access token in the cookie
   responses:
     '200':
       description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            there are two cookies set in the response, the access token is set to be httpOnly and secure, the refresh token is set to be httpOnly and secure, the refresh token is only included if remember_me is true
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+            - refresh_token: The JWT refresh token to be used to refresh the access token, this is valid for 1 hour or 30 days depending on the value of remember_me
+          schema:
+            $ref: "../components/schemas/TwoTokensHeader.yml"
       content:
         application/json:
           schema:
             type: object
             properties:
-              access_token:
-                type: string
-                description: The JWT token to be used for authentication, this is valid for 10 minutes
-              refresh_token:
-                type: string
-                description: The JWT refresh token to be used to refresh the access token, this is valid for 1 hour or 30 days depending on the value of remember_me
               products:
                 type: array
                 description: The list of products purchased by the customer

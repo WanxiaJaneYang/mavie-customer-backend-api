@@ -1,18 +1,8 @@
 get:
-  summary: Get a specific product's filter info
-  description: This endpoint allows the front end to get information about the filter of a specific product
-  parameters:
-    - name: productId
-      in: path
-      required: true
-      description: The id of the product
-      schema:
-        type: integer
-  security:
-    - BearerAuth: []
+  summary: know if the user is still logged in
+  description: This endpoint allows the front end to know if the user is still logged in, this api uses http-only cookie for authorization, so the front end should not send any authorization header to the backend
   responses:
     '200':
-      description: OK
       headers:
         Set-Cookie:
           description: |
@@ -20,10 +10,15 @@ get:
             - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
           schema:
             $ref: '../components/schemas/AccessTokenHeader.yml'
+      description: OK
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ProductFilterResponse.yml'
+            type: object
+            properties:
+              message:
+                type: string
+                description: The message of the response
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':

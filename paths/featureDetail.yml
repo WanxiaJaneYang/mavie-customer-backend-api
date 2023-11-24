@@ -1,8 +1,6 @@
 get:
   summary: Get a specific product's feature rating info
-  description: This endpoint allows the front end to get information about the detail feature rating of a specific product
-  security:
-    - BearerAuth: []
+  description: The front-end uses http-only cookie for authentication, so the front end should not send any authorization header to the backend. This endpoint allows the front end to get information about the detail feature rating of a specific product
   parameters:
     - name: productId
       in: path
@@ -19,6 +17,13 @@ get:
   responses:
     '200':
       description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            refreshed access token which will be valid for another 10 minutes
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+          schema:
+            $ref: '../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
           schema:

@@ -1,8 +1,6 @@
 put:
   summary: allow user to visit the product page
-  description: when the front end user login via share and found the user has no access to the product, the front end will send a request to this endpoint to add the access to the product for the user
-  security:
-    - BearerAuth: []
+  description: the front end use http-only cookie for authorization, so no authorization header should be sent to the backend, when the front end user login via share and found the user has no access to the product, the front end will send a request to this endpoint to add the access to the product for the user
   parameters:
     - name: productId
       in: path
@@ -29,14 +27,18 @@ put:
   responses:
     '200':
       description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            refreshed access token which will be valid for another 10 minutes
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+          schema:
+            $ref: '../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
           schema:
             type: object
             properties:
-              access_token:
-                type: string
-                description: The new JWT token to be used for authentication, this is valid for 10 minutes
               message:
                 type: string
                 description: The message of the response

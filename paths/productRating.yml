@@ -63,6 +63,13 @@ get:
   responses:
     '200':
       description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            refreshed access token which will be valid for another 10 minutes
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+          schema:
+            $ref: '../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
           schema:
