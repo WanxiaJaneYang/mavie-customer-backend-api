@@ -25,6 +25,3 @@ properties:
       maxAge:
         type: integer
         description: The maximum age for the product
-  access_token:
-    type: string
-    description: The new JWT token to be used for authentication, this is valid for 10 minutes

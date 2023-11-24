@@ -30,6 +30,3 @@ properties:
           type: number
           description: The rating of the feature
           example: 4.5
-  access_token:
-    type: string
-    description: The new JWT token to be used for authentication, this is valid for 10 minutes
