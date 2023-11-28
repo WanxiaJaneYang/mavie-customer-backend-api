@@ -14,11 +14,8 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              message:
-                type: string
-                description: The message of the response
+            $ref: '../components/schemas/LoginResponse.yml'
+          
     '400':
       $ref: '../components/responses/BadRequest.yml'
     '401':
