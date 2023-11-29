@@ -37,20 +37,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  products:
-                    type: array
-                    description: The list of products purchased by the customer
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          description: The id of the product
-                        name:
-                          type: string
-                          description: The name of the product
+                $ref: '#/paths/~1auth/get/responses/200/content/application~1json/schema'
         '400':
           description: Bad Request
           content:
@@ -111,9 +98,21 @@ paths:
               schema:
                 type: object
                 properties:
-                  message:
-                    type: string
-                    description: The message of the response
+                  user_id:
+                    type: integer
+                    description: The id of the user
+                  productList:
+                    type: array
+                    description: The list of products purchased by the customer
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The id of the product
+                        name:
+                          type: string
+                          description: The name of the product
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
