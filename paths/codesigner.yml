@@ -2,8 +2,8 @@ get:
   summary: get codesigner report based on filter parameters
   description: This endpoint allows the front end to get the codesigner report based on filter parameters, the result will render the codesigner report, the query parameters are optional, if not provided, the api will return all the codesigner report info
   parameters:
-    - in: query
-      name: productId
+    - name: productId
+      in: path
       required: true
       description: The id of the product
       schema:
