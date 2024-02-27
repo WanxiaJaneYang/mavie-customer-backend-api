@@ -29,7 +29,7 @@ This command will generate a bundled file named mavie.yml.
 
 #### Using an Online Editor
 
-You can view and interact with the API specification using the Swagger Editor online. Simply go to [Swagger Editor](https://editor.swagger.io), and import the bundled API specification file (`mavie.yml`).
+You can view and interact with the API specification using the Swagger Editor online. Simply go to [Swagger Editor](https://editor.swagger.io), and import the bundled API specification file (`mavie.yml`) or using the url (https://raw.githubusercontent.com/WanxiaJaneYang/mavie-customer-backend-api/phase2-api/mavie.yml).
 
 #### Running Swagger UI Locally with Docker
 
