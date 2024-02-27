@@ -119,27 +119,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /refresh_token:
+  /persona:
     get:
-      summary: Get a new JWT token by using the refresh token
-      description: 'The refresh token is stored in the http-only cookie, so the front end should not send any authorization header to the backend. This endpoint allows the front end to get a new JWT access token by using the refresh token.'
+      summary: get persona category api
+      description: 'This endpoint allows the front end to get the persona category, which is used for the persona filter'
       responses:
         '200':
           description: OK
-          headers:
-            Set-Cookie:
-              description: |
-                - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
-              schema:
-                $ref: '#/paths/~1auth/get/responses/200/headers/Set-Cookie/schema'
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The message indicating the success of the operation
+                type: array
+                items:
+                  $ref: '#/components/schemas/Persona'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -195,6 +187,9 @@ paths:
                   expertOpinion:
                     type: string
                     description: The expert opinion of the product
+                  overallRating:
+                    type: number
+                    description: 'The overall rating of the product, float number, fixed to 2 decimal places'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -212,16 +207,13 @@ paths:
           description: The id of the product
           schema:
             type: integer
-      security:
-        - BearerAuth: []
       responses:
         '200':
           description: OK
           headers:
             Set-Cookie:
-              description: |
-                refreshed access token which will be valid for another 10 minutes
-                - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+              description:
+                - access_token: 'The JWT token to be used for authentication, this is valid for 10 minutes'
               schema:
                 $ref: '#/paths/~1auth/get/responses/200/headers/Set-Cookie/schema'
           content:
@@ -348,8 +340,8 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   '/product/{productId}/feature/{featureId}':
     get:
-      summary: Get a specific product's feature rating info
-      description: 'The front-end uses http-only cookie for authentication, so the front end should not send any authorization header to the backend. This endpoint allows the front end to get information about the detail feature rating of a specific product'
+      summary: 'Get a specific product''s feature rating info, mainly the percentages of the ratings given by the users'
+      description: 'this api is used for the feature popup in the front end, it will be used for the percentage split'
       parameters:
         - name: productId
           in: path
@@ -379,28 +371,85 @@ paths:
                 type: object
                 description: The response body
                 properties:
-                  features:
+                  percentages:
                     type: array
-                    description: The questions rating of the feature
+                    description: The percentages of the ratings given by the users
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          description: The id of the question
-                        importance:
-                          type: number
-                          description: 'The importance of the question, from 0 to 1. all the importance should add up to 1'
+                      type: float
+                      description: 'The percentage of the rating, the index+1 of the array is the rating'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  '/product/{productId}/codesigner':
+    get:
+      summary: get codesigner report based on filter parameters
+      description: 'This endpoint allows the front end to get the codesigner report based on filter parameters, the result will render the codesigner report, the query parameters are optional, if not provided, the api will return all the codesigner report info'
+      parameters:
+        - in: query
+          name: productId
+          required: true
+          description: The id of the product
+          schema:
+            type: integer
+        - in: query
+          name: personaX_min
+          schema:
+            type: integer
+            description: The minimum value of the personaX
+        - in: query
+          name: personaX_max
+          schema:
+            type: integer
+            description: The maximum value of the personaX
+        - in: query
+          name: age_min
+          schema:
+            type: integer
+            description: The minimum value of the age
+        - in: query
+          name: age_max
+          schema:
+            type: integer
+            description: The maximum value of the age
+        - in: query
+          name: female
+          schema:
+            type: boolean
+            description: if female included or not
+        - in: query
+          name: male
+          schema:
+            type: boolean
+            description: if male included or not
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The id of the persona
+                    name:
+                      type: string
+                      description: The name of the persona
+                    profile:
+                      type: string
+                      description: The head image url of the persona
+                    report:
+                      type: string
+                      description: 'The report url of the persona, this is only'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend
-  version: 1.0.0
+  version: 2.0.0
 components:
   securitySchemes:
     BearerAuth:
@@ -421,21 +470,6 @@ components:
           description: The list of features for the product
           items:
             $ref: '#/components/schemas/Feature'
-        personas:
-          type: array
-          description: The list of personas for the product
-          items:
-            $ref: '#/components/schemas/Persona'
-        ageRange:
-          type: object
-          description: The age range for the product
-          properties:
-            minAge:
-              type: integer
-              description: The minimum age for the product
-            maxAge:
-              type: integer
-              description: The maximum age for the product
     Domain:
       type: object
       properties:
@@ -493,15 +527,9 @@ components:
         icon:
           type: string
           description: The icon svg of the persona
-        roundButtonSelected:
-          type: string
-          description: The round button selected svg of the persona
-        roundButtonUnselected:
-          type: string
-          description: The round button unselected svg of the persona
-        description:
-          type: string
-          description: The description of the persona
+        isBinary:
+          type: boolean
+          description: 'Whether the persona''s metric is binary. If false, then persona rating is from 1 to 5, otherwise it is 0 or 1'
   responses:
     BadRequest:
       description: Bad Request

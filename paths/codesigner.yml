@@ -1,0 +1,47 @@
+get:
+  summary: get codesigner report based on filter parameters
+  description: This endpoint allows the front end to get the codesigner report based on filter parameters, the result will render the codesigner report, the query parameters are optional, if not provided, the api will return all the codesigner report info
+  parameters:
+    - in: query
+      name: productId
+      required: true
+      description: The id of the product
+      schema:
+        type: integer
+    - in: query
+      name: personaX_min
+      schema:
+        type: integer
+        description: The minimum value of the personaX
+    - in: query
+      name: personaX_max
+      schema:
+        type: integer
+        description: The maximum value of the personaX
+    - in: query
+      name: age_min
+      schema:
+        type: integer
+        description: The minimum value of the age
+    - in: query
+      name: age_max
+      schema:
+        type: integer
+        description: The maximum value of the age
+    - in: query
+      name: female
+      schema:
+        type: boolean
+        description: if female included or not
+    - in: query
+      name: male
+      schema:
+        type: boolean
+        description: if male included or not
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/CodesignerResponse.yml'

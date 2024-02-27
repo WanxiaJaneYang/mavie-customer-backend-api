@@ -21,3 +21,6 @@ properties:
   expertOpinion:
     type: string
     description: The expert opinion of the product
+  overallRating:
+    type: number
+    description: The overall rating of the product, float number, fixed to 2 decimal places

@@ -9,12 +9,6 @@ properties:
   icon:
     type: string
     description: The icon svg of the persona
-  roundButtonSelected:
-    type: string
-    description: The round button selected svg of the persona
-  roundButtonUnselected:
-    type: string
-    description: The round button unselected svg of the persona
-  description:
-    type: string
-    description: The description of the persona
+  isBinary:
+    type: boolean
+    description: Whether the persona's metric is binary. If false, then persona rating is from 1 to 5, otherwise it is 0 or 1

@@ -4,10 +4,8 @@ paths:
     $ref: 'paths/login.yml'
   /auth:
     $ref: 'paths/auth.yml'
-  # /signup:
-    # $ref: 'paths/signup.yml'
-  /refresh_token:
-    $ref: 'paths/refreshToken.yml'
+  /persona:
+    $ref: 'paths/persona.yml'
   /product/{productId}:
     $ref: 'paths/productInfo.yml'
   /product/{productId}/filter:
@@ -16,14 +14,12 @@ paths:
     $ref: 'paths/productRating.yml'
   /product/{productId}/feature/{featureId}:
     $ref: 'paths/featureDetail.yml'
-  # /product/{productId}/share:
-  #   $ref: 'paths/share.yml'
-  # /client/{clientId}/addAccess/{productId}:
-  #   $ref: 'paths/addAccess.yml'
+  /product/{productId}/codesigner:
+    $ref: 'paths/codesigner.yml'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend
-  version: 1.0.0
+  version: 2.0.0
 components:
   securitySchemes:
     BearerAuth:
