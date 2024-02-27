@@ -34,7 +34,7 @@ get:
                 type: array
                 description: The percentages of the ratings given by the users
                 items:
-                  type: float
+                  type: number
                   description: The percentage of the rating, the index+1 of the array is the rating
     '400':
       $ref: '../components/responses/BadRequest.yml'

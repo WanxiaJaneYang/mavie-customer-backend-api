@@ -13,7 +13,7 @@ get:
       description: OK
       headers:
         Set-Cookie:
-          description: 
+          description: |
             - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
           schema:
             $ref: '../components/schemas/AccessTokenHeader.yml'
