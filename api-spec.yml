@@ -18,6 +18,8 @@ paths:
     $ref: 'paths/codesigner.yml'
   /product/{productId}/shareLink:
     $ref: 'paths/shareLink.yml'
+  /product/{productId}/verifyCode:
+    $ref: 'paths/verifyCode.yml'
   /product/{productId}/shareViaEmail:
     $ref: 'paths/shareViaEmail.yml'
 info:

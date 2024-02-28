@@ -481,6 +481,46 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  '/product/{productId}/verifyCode':
+    post:
+      summary: frontend use this api to verify the randomly generated uuid and related product id
+      description: 'when a user access the product page with a share link, the frontend will call this api to verify the uuid and product id'
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: the product id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uuid:
+                  type: string
+                  description: the randomly generated uuid
+      responses:
+        '200':
+          description: the uuid is valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: the message of the verification
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   '/product/{productId}/shareViaEmail':
     post:
       summary: post a sending pdf document request to other users via email
