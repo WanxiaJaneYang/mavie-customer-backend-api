@@ -16,6 +16,10 @@ paths:
     $ref: 'paths/featureDetail.yml'
   /product/{productId}/codesigner:
     $ref: 'paths/codesigner.yml'
+  /product/{productId}/shareLink:
+    $ref: 'paths/shareLink.yml'
+  /product/{productId}/shareViaEmail:
+    $ref: 'paths/shareViaEmail.yml'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend
