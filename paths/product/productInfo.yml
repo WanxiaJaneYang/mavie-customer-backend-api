@@ -19,14 +19,14 @@ get:
             refreshed access token which will be valid for another 10 minutes
             - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
           schema:
-            $ref: '../components/schemas/AccessTokenHeader.yml'
+            $ref: '../../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ProductInfoResponse.yml'
+            $ref: '../../components/schemas/ProductInfoResponse.yml'
     '400':
-      $ref: '../components/responses/BadRequest.yml'
+      $ref: '../../components/responses/BadRequest.yml'
     '401':
-      $ref: '../components/responses/Unauthorized.yml'
+      $ref: '../../components/responses/Unauthorized.yml'
     '500':
-      $ref: '../components/responses/InternalServerError.yml'
+      $ref: '../../components/responses/InternalServerError.yml'

@@ -7,19 +7,21 @@ paths:
   /persona:
     $ref: 'paths/persona.yml'
   /product/{productId}:
-    $ref: 'paths/productInfo.yml'
+    $ref: 'paths/product/productInfo.yml'
   /product/{productId}/filter:
-    $ref: 'paths/productFilter.yml'
+    $ref: 'paths/product/productFilter.yml'
   /product/{productId}/rating:
-    $ref: 'paths/productRating.yml'
+    $ref: 'paths/product/productRating.yml'
+  /sharedProduct/{productId}/rating':
+    $ref: 'paths/sharedProduct/sharedProductRating.yml'
   /product/{productId}/feature/{featureId}:
-    $ref: 'paths/featureDetail.yml'
+    $ref: 'paths/product/featureDetail.yml'
+  /sharedProduct/{productId}/feature/{featureId}/rating':
+    $ref: 'paths/sharedProduct/sharedFeatureDetail.yml'
   /product/{productId}/codesigner:
-    $ref: 'paths/codesigner.yml'
+    $ref: 'paths/product/codesigner.yml'
   /product/{productId}/shareLink:
-    $ref: 'paths/shareLink.yml'
-  /product/{productId}/verifyCode:
-    $ref: 'paths/verifyCode.yml'
+    $ref: 'paths/product/shareLink.yml'
   /product/{productId}/shareViaEmail:
     $ref: 'paths/shareViaEmail.yml'
 info:

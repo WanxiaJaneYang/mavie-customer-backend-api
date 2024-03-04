@@ -1,0 +1,44 @@
+get:
+  summary: Get a specific product's feature rating info, mainly the percentages of the ratings given by the users
+  description: this api is used for the feature popup in the front end, it will be used for the percentage split
+  parameters:
+    - name: productId
+      in: path
+      required: true
+      description: The id of the product
+      schema:
+        type: integer
+    - name: featureId
+      in: path
+      required: true
+      description: The id of the feature
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: OK
+      headers:
+        Set-Cookie:
+          description: |
+            refreshed access token which will be valid for another 10 minutes
+            - access_token: The JWT token to be used for authentication, this is valid for 10 minutes
+          schema:
+            $ref: '../../components/schemas/AccessTokenHeader.yml'
+      content:
+        application/json:
+          schema:
+            type: object
+            description: The response body
+            properties:
+              percentages:
+                type: array
+                description: The percentages of the ratings given by the users
+                items:
+                  type: number
+                  description: The percentage of the rating, the index+1 of the array is the rating
+    '400':
+      $ref: '../../components/responses/BadRequest.yml'
+    '401':
+      $ref: '../../components/responses/Unauthorized.yml'
+    '500':
+      $ref: '../../components/responses/InternalServerError.yml'
