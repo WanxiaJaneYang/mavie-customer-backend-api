@@ -1,0 +1,39 @@
+type: object
+properties:
+  name:
+    type: string
+    description: The name of the codesigner
+  age:
+    type: integer
+    description: The age of the codesigner
+  gender:
+    type: string
+    description: The gender of the codesigner
+  profile:
+    type: string
+    description: The head image url of the codesigner
+  staticQuestions:
+    type: array
+    description: The list of static questions for the codesigner
+    items:
+      type: object
+      properties:
+        question:
+          type: string
+          description: The question
+        answer:
+          type: string
+          description: The answer
+  personaCategoriesRatings:
+      type: array
+      description: The list of persona categories ratings for the codesigner
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: The id of the persona category
+          rating:
+            type: number
+            description: The rating of the persona category, from 0 to 1
+  

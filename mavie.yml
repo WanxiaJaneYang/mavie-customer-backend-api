@@ -484,6 +484,73 @@ paths:
                     report:
                       type: string
                       description: 'The report url of the persona, this is only'
+  '/product/{productId}/codesigner/{codesignerId}':
+    get:
+      summary: Get the codesigner survey by codesigner id
+      description: This endpoint allows the front end to get the codesigner survey by codesigner id
+      parameters:
+        - name: codesignerId
+          in: path
+          required: true
+          description: The id of the codesigner
+          schema:
+            type: integer
+        - name: productId
+          in: path
+          required: true
+          description: The id of the product
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of the codesigner
+                  age:
+                    type: integer
+                    description: The age of the codesigner
+                  gender:
+                    type: string
+                    description: The gender of the codesigner
+                  profile:
+                    type: string
+                    description: The head image url of the codesigner
+                  staticQuestions:
+                    type: array
+                    description: The list of static questions for the codesigner
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                          description: The question
+                        answer:
+                          type: string
+                          description: The answer
+                  personaCategoriesRatings:
+                    type: array
+                    description: The list of persona categories ratings for the codesigner
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The id of the persona category
+                        rating:
+                          type: number
+                          description: 'The rating of the persona category, from 0 to 1'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   '/product/{productId}/shareLink':
     get:
       summary: send a share request and return a randomly generated uuid

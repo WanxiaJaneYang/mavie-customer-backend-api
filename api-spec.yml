@@ -20,6 +20,8 @@ paths:
     $ref: 'paths/sharedProduct/sharedFeatureDetail.yml'
   /product/{productId}/codesigner:
     $ref: 'paths/product/codesigner.yml'
+  /product/{productId}/codesigner/{codesignerId}:
+    $ref: 'paths/product/codesignerSurvey.yml'
   /product/{productId}/shareLink:
     $ref: 'paths/product/shareLink.yml'
   /product/{productId}/shareViaEmail:
