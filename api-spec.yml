@@ -4,10 +4,10 @@ paths:
     $ref: 'paths/login.yml'
   /auth:
     $ref: 'paths/auth.yml'
-  /persona:
-    $ref: 'paths/persona.yml'
   /product/{productId}:
     $ref: 'paths/product/productInfo.yml'
+  /product/{productId}/persona:
+    $ref: 'paths/product/persona.yml'
   /product/{productId}/filter:
     $ref: 'paths/product/productFilter.yml'
   /product/{productId}/rating:

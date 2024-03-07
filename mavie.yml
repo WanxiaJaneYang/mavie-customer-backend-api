@@ -119,25 +119,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  /persona:
-    get:
-      summary: get persona category api
-      description: 'This endpoint allows the front end to get the persona category, which is used for the persona filter'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Persona'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
   '/product/{productId}':
     get:
       summary: Get a specific product's info
@@ -190,6 +171,32 @@ paths:
                   overallRating:
                     type: number
                     description: 'The overall rating of the product, float number, fixed to 2 decimal places'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  '/product/{productId}/persona':
+    get:
+      summary: get persona category api
+      description: 'This endpoint allows the front end to get the persona category, which is used for the persona filter'
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: The id of the product
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Persona'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -714,16 +721,19 @@ components:
       properties:
         id:
           type: integer
-          description: The id of the persona
+          description: The id of the persona category
         name:
           type: string
-          description: The name of the persona
+          description: The name of the persona category
         icon:
           type: string
-          description: The icon svg of the persona
-        isBinary:
-          type: boolean
-          description: 'Whether the persona''s metric is binary. If false, then persona rating is from 1 to 5, otherwise it is 0 or 1'
+          description: The icon svg of the persona category
+        min:
+          type: integer
+          description: The minimum value of the codesigners persona category ratings for this product
+        max:
+          type: integer
+          description: The maximum value of the codesigners persona category ratings for this product
   responses:
     BadRequest:
       description: Bad Request
