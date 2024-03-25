@@ -1,5 +1,8 @@
 type: object
 properties:
+  id:
+    type: string
+    description: The id of the product
   domainRatings:
     type: array
     description: The domain ratings of the product

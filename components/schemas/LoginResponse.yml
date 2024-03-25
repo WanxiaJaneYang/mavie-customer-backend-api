@@ -1,6 +1,6 @@
 type: object
 properties:
-  user_id:
+  userId:
     type: integer
     description: The id of the user
   productList:
@@ -15,3 +15,27 @@ properties:
         name:
           type: string
           description: The name of the product
+  surveys:
+    type: array
+    description: The list of surveys
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the survey
+        name:
+          type: string
+          description: The name of the survey
+        relatedProductList:
+          type: array
+          description: The list of products related to the survey
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: The id of the product
+              name:
+                type: string
+                description: The name of the product
