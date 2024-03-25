@@ -27,9 +27,10 @@ get:
             $ref: '../../components/schemas/AccessTokenHeader.yml'
       content:
         application/json:
-          type: array
-          items:
-            $ref: '../../components/schemas/product/productRatingObject.yml'
+          schema:
+            type: array
+            items:
+              $ref: '../../components/schemas/product/productRatingObject.yml'
     '400':
       $ref: '../../components/responses/BadRequest.yml'
     '401':

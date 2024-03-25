@@ -33,8 +33,7 @@ get:
       content:
         application/json:
           schema:
-          type: object
-          description: The response body
+            type: object
             properties:
               percentages:
                 type: array

@@ -36,8 +36,6 @@ paths:
     $ref: 'paths/survey/surveyFeatureDetail.yml'
   /survey/{surveyId}/shareLink:
     $ref: 'paths/survey/surveyShareLink.yml'
-  /product/generateReport:
-    $ref: 'paths/generateReport.yml'
 info:
   title: Mavie API
   description: API for Mavie Customer Backend
