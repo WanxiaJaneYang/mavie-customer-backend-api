@@ -113,7 +113,7 @@ paths:
                         name:
                           type: string
                           description: The name of the product
-                  surveys:
+                  surveyList:
                     type: array
                     description: The list of surveys
                     items:
@@ -668,24 +668,28 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
   '/survey/{surveyId}/productInfo':
-    get:
+    post:
       summary: Get product info for survey
       description: This endpoint allows the front end to get multiple product info for a survey
       parameters:
-        - name: sessionId
+        - name: surveyId
           in: path
           required: true
           description: The id of the product
           schema:
             type: string
-        - name: productIds
-          in: query
-          required: true
-          description: The list of product ids
-          schema:
-            type: array
-            items:
-              type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productIds:
+                  type: array
+                  description: The list of product ids
+                  items:
+                    type: string
       responses:
         '200':
           description: OK
@@ -737,7 +741,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
   '/survey/{surveyId}/domains':
-    get:
+    post:
       summary: Get a specific survey domain's info
       parameters:
         - name: surveyId
@@ -746,6 +750,18 @@ paths:
           description: The id of the survey
           schema:
             type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productIds:
+                  type: array
+                  description: The list of product ids
+                  items:
+                    type: string
       responses:
         '200':
           description: OK
@@ -767,7 +783,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
   '/survey/{surveyId}/rating':
-    get:
+    post:
       summary: Get a specific survey rating's info
       parameters:
         - name: surveyId
@@ -776,14 +792,18 @@ paths:
           description: The id of the survey
           schema:
             type: string
-        - name: productIds
-          in: query
-          required: true
-          description: The list of product ids
-          schema:
-            type: array
-            items:
-              type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productIds:
+                  type: array
+                  description: The list of product ids
+                  items:
+                    type: string
       responses:
         '200':
           description: OK

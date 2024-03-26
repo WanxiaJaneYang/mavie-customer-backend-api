@@ -1,21 +1,25 @@
-get:
+post:
   summary: Get product info for survey
   description: This endpoint allows the front end to get multiple product info for a survey
   parameters:
-    - name: sessionId
+    - name: surveyId
       in: path
       required: true
       description: The id of the product
       schema:
         type: string
-    - name: productIds
-      in: query
-      required: true
-      description: The list of product ids
-      schema:
-        type: array
-        items:
-          type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            productIds:
+              type: array
+              description: The list of product ids
+              items:
+                type: string
   responses:
     '200':
       description: OK

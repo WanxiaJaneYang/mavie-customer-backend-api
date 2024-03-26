@@ -1,4 +1,4 @@
-get:
+post:
   summary: Get a specific survey domain's info
   parameters:
     - name: surveyId
@@ -7,6 +7,18 @@ get:
       description: The id of the survey 
       schema:
         type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            productIds:
+              type: array
+              description: The list of product ids
+              items:
+                type: string
   responses:
     '200':
       description: OK
