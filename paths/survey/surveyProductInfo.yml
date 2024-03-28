@@ -35,7 +35,7 @@ post:
           schema:
             type: array
             items:
-              $ref: '../../components/schemas/product/ProductInfoObject.yml'
+              $ref: '../../components/schemas/product/SurveyProductInfoObject.yml'
     '400':
       $ref: '../../components/responses/BadRequest.yml'
     '401':

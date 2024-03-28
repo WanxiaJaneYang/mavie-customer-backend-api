@@ -1,0 +1,23 @@
+type: object
+properties:
+  id:
+    type: string
+    description: The id of the product
+  brand:
+    type: string
+    description: The brand of the product
+  brandIcon:
+    type: string
+    description: The brand icon of the product
+  description:
+    type: string
+    description: The description of the product
+  image:
+    type: string
+    description: The image link of the product
+  modelName:
+    type: string
+    description: The model name of the product
+  productCategoryName:
+    type: string
+    description: The product category of the product
